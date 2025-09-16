@@ -2,6 +2,8 @@ from clipboard import xray
 
 def main():
     print("Checking if there is a current password inside the clipboard...")
+    test = xray.XRay()
+    test.read_current_data()
     # Run the checking
     # If found, print it
     # Else
