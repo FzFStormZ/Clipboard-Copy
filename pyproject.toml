@@ -1,0 +1,5 @@
+[project]
+name = "Clipboard-Copy"
+version = "0.1.0"
+description = "A sample Python project to visualize and analyze contents of the clipboard to get potential passwords"
+authors = [{name="Dylan Degail (Meitoka)", email="dylan.degail@gmail.com"}]
