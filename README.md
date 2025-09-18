@@ -7,17 +7,15 @@ TW: ONLY FOR EDUCATIONAL PURPOSE
 
 ## 📋 Features
 
-- Continuous clipboard monitoring  
-- Automatic detection of potential password patterns (via regex)  
-- Alerts (console) when sensitive content is suspected  
-- (Optional/to be added) Logging with timestamps  
-- (Optional/to be added) Configurable detection rules and thresholds
+- Continuous clipboard monitoring
+- Automatic detection of potential password patterns (via regex)
+- Alerts (console) when sensitive content is suspected
 
-## New features
+## 📢 New Features
 
 - Logging with timestamps inside a logs/ folder
 - Create option to the program to enable/disable logging
-- Create option to define custom regex patterns for password detection by the user 
+- Create option to define custom regex patterns for password detection by the user
 
 
 ## 📦 Project Structure
@@ -42,12 +40,12 @@ TW: ONLY FOR EDUCATIONAL PURPOSE
 ## 🛠️ Requirements & Installation
 
 **Requirements:**
-- Python 3.8+ (tested on Python 3.10.12 in Ubuntu 22.04.5 WLS) 
+- Python 3.8+ (tested on Python 3.10.12 in Ubuntu 22.04.5 WLS)
 - Dependencies listed in `requirements.txt`
 
 **Installation:**
 
-1. Clone the repository  
+1. Clone the repository
    ```bash
    git clone https://github.com/FzFStormZ/Clipboard-XRay.git
    cd Clipboard-XRay
