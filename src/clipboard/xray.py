@@ -1,3 +1,4 @@
+from io import TextIOWrapper
 import pyperclip as clip
 from utils import utils
 import time
@@ -55,5 +56,6 @@ class XRay:
         print("Stopping the XRay...")
                 
     # Put all the founded passwords inside a wordlist
-    def export_passwords(self, file) -> None:
-        pass
+    def export_passwords(self, wordlist: TextIOWrapper) -> None:
+        wordlist.writelines(self.passwords)
+        wordlist.close()

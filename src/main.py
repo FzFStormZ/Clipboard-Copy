@@ -5,10 +5,10 @@ def main():
     sniff = xray.XRay()
 
     # Collect a maximum of passwords...
-    sniff.read_until_password() # Hello12@AdffrEZZ
+    sniff.read_until_password()
     
     # Export all the passwords founded inside a wordlist
-    with open("./wordlists/passwords.txt", "w") as wordlist:
+    with open("src/wordlists/passwords.txt", "w") as wordlist:
         sniff.export_passwords(wordlist)
 
 if __name__ == "__main__":
