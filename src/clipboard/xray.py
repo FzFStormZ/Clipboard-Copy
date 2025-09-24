@@ -6,10 +6,11 @@ from sshkeyboard import listen_keyboard, stop_listening
 import threading
 
 class XRay:
-    def __init__(self, nb_caracs: int = 8, specials: bool = True, numbers: bool = True) -> None:
+    def __init__(self, verbose: bool, nb_caracs: int = 8, specials: bool = True, numbers: bool = True) -> None:
         self.passwords = set()
         self.conditions = {'nb_caracs': nb_caracs, 'specials': specials, 'numbers': numbers}
         self.exit = False
+        self.verbose = verbose
         
         clip.set_clipboard('xclip')
 
@@ -33,29 +34,32 @@ class XRay:
         text = clip.paste()
         if self.is_password(text):
             self.passwords.add(text)
-            print(f"Potential password founded: {text}!")
-            print(f"Added to the passwords list")
+            if self.verbose: print(f"Potential password founded: {text}!")
+            if self.verbose: print(f"Added to the passwords list")
         else:
-            print("Password not found :)")
+            if self.verbose: print("Password not found :)")
 
     def read_until_password(self) -> None:
         # init variables
         text = ''
         password = ''
 
+        print("XRay activated... [ESC] to stop the listening")
+
         while not self.exit:
-            print("XRay activated... [ESC] to stop the listening")
             text = clip.paste()
             if self.is_password(text) and password != text:
                 password = text
-                print(f"Potential password founded: {password}!")
+                if self.verbose: print(f"Potential password founded: {password}!")
                 self.passwords.add(password)
-                print(f"Added to the passwords list")
+                if self.verbose: print(f"Added to the passwords list")
             
             time.sleep(1)
+            if self.verbose: print("XRay activated... [ESC] to stop the listening")
         print("Stopping the XRay...")
                 
     # Put all the founded passwords inside a wordlist
     def export_passwords(self, wordlist: TextIOWrapper) -> None:
         wordlist.writelines(self.passwords)
         wordlist.close()
+        if self.verbose: print(f"Saved file {wordlist.name}...")
