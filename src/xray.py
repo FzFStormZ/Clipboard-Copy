@@ -1,6 +1,6 @@
 from io import TextIOWrapper
 import pyperclip as clip
-from utils import utils
+import utils
 import time
 from sshkeyboard import listen_keyboard, stop_listening
 import threading
@@ -18,14 +18,28 @@ class XRay:
         thread = threading.Thread(target=listen_keyboard, kwargs={"on_press": self.press, "until": None}, daemon=True)
         thread.start()
 
-    def press(self, key):
+    def press(self, key: str):
+        """
+        Action function to detect when a key is press.
+
+        :param key: The pressed key.
+        :type key: str
+
+        """
         if key == "esc":
             self.exit = True
             stop_listening() # to avoid block the keyboard inside the current terminal
 
-    # Check if the given text is actually a password according to the conditions of the instance
     def is_password(self, text: str) -> bool:
+        """
+        Check if the given text is actually a password according to the conditions of the instance.
 
+        :param text: Text to analyze.
+        :type text: str
+        :return: Is a password or not.
+        :rtype: bool
+
+        """
         nb = len(text) >= self.conditions['nb_caracs']
         special = self.conditions['specials'] ^ utils.has_special_chars(text) # wall headbanger...
         numbers = self.conditions['numbers'] ^ utils.has_numbers(text)
@@ -33,6 +47,10 @@ class XRay:
         return nb & special & numbers
 
     def read_current_data(self) -> None:
+        """
+        Read the current data inside the clipboard.
+
+        """
         text = clip.paste()
         if self.is_password(text):
             self.passwords.add(text)
@@ -42,6 +60,10 @@ class XRay:
             if self.verbose: print("Password not found :)")
 
     def read_until_password(self) -> None:
+        """
+        Read the data inside the clipboard.
+
+        """
         # init variables
         text = ''
         password = ''
@@ -59,9 +81,15 @@ class XRay:
             time.sleep(1)
             if self.verbose: print("XRay activated... [ESC] to stop the listening")
         print("Stopping the XRay...")
-                
-    # Put all the founded passwords inside a wordlist
+
     def export_passwords(self, wordlist: TextIOWrapper) -> None:
+        """
+        Export all the founded passwords inside a wordlist.
+
+        :param wordlist: File to contain passwords.
+        :type wordlist: TextIOWrapper
+
+        """
         wordlist.writelines(self.passwords)
         wordlist.close()
         if self.verbose: print(f"Saved file {wordlist.name}...")

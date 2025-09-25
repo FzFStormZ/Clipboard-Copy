@@ -24,10 +24,8 @@ TW: ONLY FOR EDUCATIONAL PURPOSE
 .
 ├── docs/
 ├── src/
-│   ├── clipboard/
-│   │   └── xray.py
-│   ├── utils/
-│   │   └── utils.py
+│   ├── xray.py
+│   ├── utils.py
 │   ├── wordlists/
 │   │   └── example.txt
 │   └── main.py

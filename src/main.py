@@ -1,7 +1,11 @@
-from clipboard import xray
+import xray
 import argparse
 
 def main():
+    """
+    Main function of our program.
+
+    """
     # Starting the XRay :)
     args = parser.parse_args()
     print(args)
