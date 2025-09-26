@@ -2,7 +2,7 @@
 
 TW: ONLY FOR EDUCATIONAL PURPOSE
 
-**Clipboard-XRay** is a Python tool designed to monitor the clipboard in real time and analyze its content to detect the possible presence of passwords.
+**Clipboard-XRay** is a Python tool designed to monitor the clipboard in real time and analyze its content to detect possible presence of passwords.
 
 
 ## 📋 Features
