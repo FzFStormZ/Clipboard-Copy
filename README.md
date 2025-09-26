@@ -80,5 +80,5 @@ MIT License — free to use with attribution.
 
 ## 🛠️ Author
 
-Author: Meitoka (ex: FzFStormZ)
+Author: Meitoka (ex: FzFStormZ)  
 Feedback and discussions welcome via GitHub Issues.
