@@ -14,8 +14,8 @@ TW: ONLY FOR EDUCATIONAL PURPOSE
 ## 📢 New Features
 
 - Logging with timestamps inside a logs/ folder
-- Create option to the program to enable/disable logging
-- Create option to define custom regex patterns for password detection by the user
+- Create option to the program to enable/disable verbose ✅
+- Create option to define custom regex patterns for password detection by the user ✅
 
 
 ## 📦 Project Structure
@@ -24,13 +24,16 @@ TW: ONLY FOR EDUCATIONAL PURPOSE
 .
 ├── docs/
 ├── src/
-│   ├── xray.py
-│   ├── utils.py
-│   ├── wordlists/
+│   └── wordlists/
 │   │   └── example.txt
-│   └── main.py
+│   ├── __init__.py
+│   ├── main.py
+│   ├── utils.py
+│   └── xray.py
 ├── tests/
+│   └── test_utils.py
 ├── pyproject.toml
+├── pytest.ini
 ├── README.md
 └── requirements.txt
 ```
