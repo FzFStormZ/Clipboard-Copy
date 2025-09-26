@@ -1,4 +1,4 @@
-from src.utils import has_special_chars, has_numbers
+from utils import has_special_chars, has_numbers
 
 def test_hash_special_chars():
     assert has_special_chars("hello!") is True      # exclamation mark
